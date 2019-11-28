@@ -2,19 +2,97 @@ import UIKit
 import Foundation
 
 
+func lengthOfLongestSubstring(_ s: String) -> Int {
+    var maxLength = 0, left = 0, set = Set<Character>()
+    let characterArray = Array(s)
+    
+    print(characterArray)
+    
+    for (i, char) in characterArray.enumerated() {
 
+        if set.contains(char) {
+            print(set)
+            while characterArray[left] != char {
+                set.remove(characterArray[left])
+                left = left + 1
+            }
+            print(left)
+            set.remove(characterArray[left])
+            left = left + 1
+            print(maxLength)
+            maxLength = max(maxLength, i - left + 1)
+        } else {
+            set.insert(char)
+            maxLength = max(maxLength, i - left + 1)
 
+        }
+    }
 
-
-func intersection(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
-    return Array(Set(nums1).intersection(Set(nums2)))
+    
+    return maxLength
 }
 
-intersection([4, 9, 5], [9, 4, 9, 8, 4])
+
+print(lengthOfLongestSubstring("abcabcb"))
+
+
+// 两数相加
+
+//public class ListNode {
+//    public var val: Int
+//    public var next: ListNode?
+//    public init(_ val: Int) {
+//        self.val = val
+//        self.next = nil
+//    }
+//}
+//
+//func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+//    guard let l1 = l1 else {
+//        return l2
+//    }
+//
+//    guard let l2 = l2 else {
+//        return l1
+//    }
+//
+//    let outputNode = ListNode((l1.val + l2.val) % 10)
+//    if l1.val + l2.val > 9 {
+//        outputNode.next = addTwoNumbers(addTwoNumbers(l1.next, l2.next), ListNode(1))
+//    } else {
+//        outputNode.next = addTwoNumbers(l1.next, l2.next)
+//    }
+//    return outputNode
+//}
 
 
 
 
+
+
+// 两数之和
+
+//func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+//    var myDic = [Int: Int]()
+//    for (index, value) in nums.enumerated() {
+//        let otherValue = target - value
+//        if let test = myDic[otherValue] {
+//            return [index, test]
+//        }
+//        myDic[value] = index
+//    }
+//
+////    for(i, val) in nums.enumerated() {
+////        let otherValue = target - val
+////        if let test = myDic[otherValue] {
+////            return [i, test]
+////        }
+////    }
+//
+//    return []
+//}
+//
+//twoSum([2, 7, 11, 15], 9)
 
 
 //func containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
